@@ -1,0 +1,27 @@
+Package: DoubleMLReplicationCode
+Title: Replication Code for Bach et al. (2020)
+Version: 0.0.0.9000
+Authors@R: (
+    person("Philipp", "Bach", email = "philipp.bach@uni-hamburg.de", role=c("aut", "cre"),
+    person("Victor", "Chernozhukov", role="aut"),
+    person("Malte S.", "Kurz", email = "malte.simon.kurz@uni-hamburg.de", role="aut",
+    person("Martin", "Spindler", email="martin.spindler@gmx.de", role="aut"))
+Description: Package to guarantee reproducibility of the simulation examples in Bach et al. (2020). Reference: Bach, P., Chernozhukov, V., Kurz, M. S., and Spindler, M. (2021), DoubleML - An Object-Oriented Implementation of Double Machine Learning in Python, arXiv:2104.03220.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: false
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    cowplot,
+    data.table,
+    doParallel,
+    doRNG,
+    DoubleML,
+    foreach,
+    ggplot2,
+    mlr3,
+    mlr3learners,
+    mvtnorm,
+    parallel,
+    xtable
