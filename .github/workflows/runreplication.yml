@@ -10,7 +10,7 @@ jobs:
   replicate-simulation:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (R ${{ matrix.config.r }}; mlr3 ${{ matrix.config.mlr3 }}); DoubleML ${{ matrix.config.DoubleML }})
+    name: ${{ matrix.config.os }} (R ${{ matrix.config.r }}; mlr3 ${{ matrix.config.mlr3 }}; DoubleML ${{ matrix.config.DoubleML }})
 
     strategy:
       fail-fast: false

@@ -20,8 +20,10 @@ Imports:
     DoubleML,
     foreach,
     ggplot2,
+    glmnet,
     mlr3,
     mlr3learners,
     mvtnorm,
     parallel,
+    ranger,
     xtable
