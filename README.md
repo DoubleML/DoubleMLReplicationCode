@@ -62,6 +62,19 @@ in Python, arXiv:2104.03220.
       note={arXiv:\href{https://arxiv.org/abs/2103.09603}{2103.09603} [stat.ML]}
     }
 
+## Issues, Problems, Bugs
+
+Please report problems and bugs as [an issue in this
+repository.](https://github.com/PhilippBach/DoubleMLReplicationCode/issues)
+
+## Acknowledgements
+
+We would like to thank Simon Couch for providing [a detailed blogpost on
+how to use GitHub Actions for running R
+scripts.](https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/).
+This blogpost was used to set up the GitHub Actions used for automated
+replication of the simulation results.
+
 ## References
 
 Bach, P., Chernozhukov, V., Kurz, M. S., and Spindler, M. (2021),
