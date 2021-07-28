@@ -9,6 +9,10 @@ library(mlr3learners)
 library(data.table)
 library(doRNG)
 
+# Create a new directory plus subdirectories
+dir.create("simresults")
+dir.create("simresults/irm")
+
 date = Sys.Date()
 learner_name = "regr.cv_glmnet"
 learner2_name = "classif.cv_glmnet"
@@ -39,32 +43,32 @@ start2
 
 
 res <- foreach (r = seq(R), .packages = c("DoubleML", "data.table", "mlr3", "mlr3learners")) %dopar% {
-  
+
   set.seed(as.numeric(123456 + r))
   data_ml = make_irm_data(n_obs = n_obs, dim_x = dim_x, theta = alpha, return_type = "DoubleMLData")
-  
-  double_mlirm = DoubleMLIRM$new(data_ml, 
+
+  double_mlirm = DoubleMLIRM$new(data_ml,
                                  n_folds = n_folds,
                                  ml_g = learner,
                                  ml_m = learner2,
-                                 dml_procedure = dml_procedure, 
+                                 dml_procedure = dml_procedure,
                                  score = score)
-  
+
   double_mlirm$fit()
   confint = double_mlirm$confint()
   coef = double_mlirm$coef
   se = double_mlirm$se
   cover = as.numeric(confint[1] < alpha & alpha < confint[2])
-  
-  results = list("coef" = coef, "se" = se, "confint" = confint, "cover" = cover) 
+
+  results = list("coef" = coef, "se" = se, "confint" = confint, "cover" = cover)
 }
 
 duration2 <- Sys.time() - start2
 duration2
 
-save(res, file = paste0("raw_results_sim_IRM_", learner_name, "_n_", n_obs, "_p_", dim_x, ".Rda"))
+save(res, file = paste0("simresults/irm/raw_results_sim_IRM_", learner_name, "_n_", n_obs, "_p_", dim_x, ".Rda"))
 
-coef = vapply(res, function(x) x$coef, double(1L)) 
+coef = vapply(res, function(x) x$coef, double(1L))
 se = vapply(res, function(x) x$se, double(1L))
 coef_resc = (coef - alpha)/se
 sd = mean(vapply(res, function(x) x$se, double(1L)))
@@ -75,7 +79,7 @@ df = data.table("coef" = coef, "alpha" = alpha, "coef_resc" = coef_resc)
 coverage = sum(vapply(res, function(x) x$cover, double(1L)))/R
 print(paste("Coverage:", coverage))
 
-g_est = ggplot(df, aes(x = coef_resc)) + 
+g_est = ggplot(df, aes(x = coef_resc)) +
   geom_density(fill = "dark blue", alpha = 0.3) +
   geom_histogram(aes(y = ..density..), alpha = 0.1, fill = "dark blue", color = "black") +
   geom_vline(aes(xintercept = 0), col = "red") +
@@ -88,32 +92,32 @@ g_est = ggplot(df, aes(x = coef_resc)) +
 
 g_est
 
-ggsave(filename = paste0("densplot_IRM_", n_obs, "_", dim_x, "_", 
-                         "_", dml_procedure, "_", n_folds, 
-                         "_", n_rep_folds, "_", learner_name, "_", R, 
-                         "_", alpha, ".pdf"), 
+ggsave(filename = paste0("simresults/irm/densplot_IRM_", n_obs, "_", dim_x, "_",
+                         "_", dml_procedure, "_", n_folds,
+                         "_", n_rep_folds, "_", learner_name, "_", R,
+                         "_", alpha, ".pdf"),
        plot = g_est)
 
 results_summary = data.table(
-  "learner" = learner_name, 
-  "n_folds" = n_folds, 
-  "n_rep_folds" = n_rep_folds, 
-  "dml_procedure" = dml_procedure, 
-  "score" = score, 
-  "n" = n_obs, 
-  "p_x" = dim_x, 
-  "p_z" = NULL, 
-  "alpha_0" = alpha, 
-  "param" = NULL, 
-  "R" = R, 
+  "learner" = learner_name,
+  "n_folds" = n_folds,
+  "n_rep_folds" = n_rep_folds,
+  "dml_procedure" = dml_procedure,
+  "score" = score,
+  "n" = n_obs,
+  "p_x" = dim_x,
+  "p_z" = NULL,
+  "alpha_0" = alpha,
+  "param" = NULL,
+  "R" = R,
   "coverage" = coverage,
-  "coef" = list(coef), 
+  "coef" = list(coef),
   "Date" = date)
 
-fwrite(results_summary, file = paste0("results_irm_", n_obs, "_", dim_x, "_", 
-                                      dml_procedure, "_", n_folds, 
+fwrite(results_summary, file = paste0("simresults/irm/results_irm_", n_obs, "_", dim_x, "_",
+                                      dml_procedure, "_", n_folds,
                                       "_", n_rep_folds, "_", learner_name, "_",
-                                      "_", R, 
+                                      "_", R,
                                       "_", alpha, ".csv"))
 
 stopCluster(cl)

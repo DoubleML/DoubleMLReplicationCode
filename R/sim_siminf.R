@@ -8,6 +8,10 @@ library(parallel)
 library(doParallel)
 library(doRNG)
 
+# Create a new directory plus subdirectories
+dir.create("simresults")
+dir.create("simresults/siminf")
+
 date <- Sys.Date()
 date
 
@@ -92,7 +96,7 @@ time = end - begin
 time
 
 # save results
-save(res , file = paste0("results_simInf_n_", n, "_p_", p, "_R_", R, ".Rda"))
+save(res , file = paste0("simresults/siminf/results_simInf_n_", n, "_p_", p, "_R_", R, ".Rda"))
 
 # True H0
 TH0 = which(res[[1]]$beta < threshold)
@@ -140,6 +144,6 @@ result_table
 library(xtable)
 xtable(result_table)
 
-save(result_table, file = paste0("summary_table_simInf_n_", n, "_p_", p, "_R_", R, ".Rda"))
+save(result_table, file = paste0("simresults/siminf/summary_table_simInf_n_", n, "_p_", p, "_R_", R, ".Rda"))
 
 stopCluster(cl)
