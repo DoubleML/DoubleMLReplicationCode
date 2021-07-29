@@ -1,5 +1,5 @@
 # Workflow based on https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/
-name: Replication
+name: Replication (Simultaneous Inference)
 
 on:
   schedule:
@@ -56,29 +56,9 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Introduction and Cross Fit
+      - name: Run SimInf
         run: |
-          source("R/examples_failure_n_500_p_20.R")
-        shell: Rscript {0}
-
-      - name: Run PLR
-        run: |
-          source("R/sim_plr.R")
-        shell: Rscript {0}
-
-      - name: Run PLIV
-        run: |
-          source("R/sim_plivX.R")
-        shell: Rscript {0}
-
-      - name: Run IRM
-        run: |
-          source("R/sim_irm.R")
-        shell: Rscript {0}
-
-      - name: Run IIVM
-        run: |
-          source("R/sim_iivm.R")
+          source("R/sim_siminf.R")
         shell: Rscript {0}
 
       - name: Commit files
@@ -87,18 +67,6 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add --all
           git commit -am "save simulation results"
-          git push
-
-      - name: Merge results
-        run: |
-          source("merge_plots.R")
-
-      - name: Commit files (merge)
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add --all
-          git commit -am "save merged results"
           git push
 
       - name: Session info
