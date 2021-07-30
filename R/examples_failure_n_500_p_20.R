@@ -2,6 +2,12 @@
 # Failure of naive inference / Building block of DoubleML
 library(DoubleML)
 library(ggplot2)
+
+# Create a new directory plus subdirectories
+dir.create("simresults")
+dir.create("simresults/examples_fail")
+
+
 set.seed(1234)
 n_rep = 1000
 n_obs = 500
@@ -36,13 +42,13 @@ sd_ols = sd(theta_ols)
 g_ols = ggplot(df_ols, aes(x = theta_ols)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_ols), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_ols), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("OLS, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_ols
 
-ggsave(filename = paste0("ols_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/ols_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_ols)
 
 df_ols_resc = data.frame(theta_ols_resc = (theta_ols - alpha)/sd_ols)
@@ -50,8 +56,8 @@ g_ols_resc = ggplot(df_ols_resc, aes(x = theta_ols_resc)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             # geom_density(fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() + # ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd =1), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() + # ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd =1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("OLS, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 g_ols_resc
 
@@ -95,8 +101,8 @@ sd_nonorth = sd(theta_nonorth)
 g_nonorth = ggplot(df_nonorth, aes(x = theta_nonorth)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_nonorth), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_nonorth), geom = "area", col = "red", fill = "red", alpha = 0.01) +
              ggtitle(paste0("Non-Orthogonal, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_nonorth
@@ -106,16 +112,16 @@ df_nonorth_resc = data.frame("theta_nonorth" = df_nonorth$theta_nonorth/sd_nonor
 g_nonorth_resc = ggplot(df_nonorth_resc, aes(x = theta_nonorth)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +       
-            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Full Sample, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_nonorth_resc
 
-ggsave(filename = paste0("nonorth_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nonorth_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_nonorth)
 
-ggsave(filename = paste0("nonorth_resc_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nonorth_resc_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_nonorth_resc)
 
 ################
@@ -144,13 +150,13 @@ sd_orth_nosplit = sd(theta_orth_nosplit)
 g_orth_nosplit = ggplot(df_orth_nosplit, aes(x = theta_orth_nosplit)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,12)) +        
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,12)) +
             stat_function(fun = dnorm, args = list(mean = 0, sd = sd_orth_nosplit), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Full Sample, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_orth_nosplit
 
-ggsave(filename = paste0("orth_nosplit_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/orth_nosplit_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_orth_nosplit)
 
 
@@ -158,13 +164,13 @@ df_orth_nosplit_resc = data.frame("theta_orth_nosplit" = df_orth_nosplit$theta_o
 g_orth_nosplit_resc = ggplot(df_orth_nosplit_resc, aes(x = theta_orth_nosplit)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +       
-            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Full Sample, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_orth_nosplit_resc
 
-ggsave(filename = paste0("orth_nosplit_resc_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/orth_nosplit_resc_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_orth_nosplit_resc)
 
 ###########
@@ -188,13 +194,13 @@ sd_dml = sd(theta_dml)
 g_dml = ggplot(df_dml, aes(x = theta_dml)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Orthogonal, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_dml
 
-ggsave(filename = paste0("double_ml_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/double_ml_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_dml)
 
 
@@ -202,41 +208,41 @@ df_dml_resc = data.frame("theta_dml" = df_dml$theta_dml/sd_dml)
 g_dml_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Split Sample, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_dml_resc
 
-ggsave(filename = paste0("double_ml_resc_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_dml_resc)
 
 
 library(cowplot)
 g_comb1  = plot_grid(g_nonorth, g_dml)
-ggsave(filename = paste0("nonorth_doubleml_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nonorth_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_comb1, width=8, height=3, dpi=150)
 
 g_comb2  = plot_grid(g_orth_nosplit, g_dml)
-ggsave(filename = paste0("nosplit_doubleml_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nosplit_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_comb2, width=8, height=3, dpi=150)
 
 g_comb1b  = plot_grid(g_nonorth, g_ols)
-ggsave(filename = paste0("nonorth_ols_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nonorth_ols_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_comb1b, width=8, height=3, dpi=150)
 
 # Rescaled version of g_comb2
 g_comb2_resc  = plot_grid(g_orth_nosplit_resc, g_dml_resc)
 
-ggsave(filename = paste0("nosplit_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nosplit_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
         plot = g_comb2_resc, width=8, height=3, dpi=150)
 
 g_comb1_resc = plot_grid(g_nonorth_resc, g_dml_resc)
-ggsave(filename = paste0("nonorth_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nonorth_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
         plot = g_comb1_resc, width=8, height=3, dpi=150)
 
 
-### Cross-Fitting vs. no cross-fitting (both cases with sample splitting) ### 
+### Cross-Fitting vs. no cross-fitting (both cases with sample splitting) ###
 
 ###########
 ### DML ###
@@ -250,7 +256,7 @@ for (i_rep in seq_len(n_rep)) {
     obj_dml_plr = DoubleMLPLR$new(obj_dml_data,
                               ml_g, ml_m,
                               n_folds=2,
-                              score="partialling out", 
+                              score="partialling out",
                               apply_cross_fitting =  FALSE)
     obj_dml_plr$fit()
     this_theta = obj_dml_plr$coef
@@ -262,13 +268,13 @@ sd_dml_split_no_cross = sd(theta_dml_split_no_cross)
 g_dml_split_no_cross = ggplot(df_dml_split_no_cross, aes(x = theta_dml_split_no_cross)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml_split_no_cross), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml_split_no_cross), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("No cross-fitting, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_dml_split_no_cross
 
-ggsave(filename = paste0("double_ml_resc_no_cross_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_no_cross_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_dml_split_no_cross)
 
 
@@ -277,13 +283,13 @@ sd_dml = sd(theta_dml)
 g_dml = ggplot(df_dml, aes(x = theta_dml)) +
             geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
             geom_vline(aes(xintercept = 0), col = "black") +
-            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +        
-            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) + 
+            xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) +
             ggtitle(paste0("Cross-fitting, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_dml
 
 g_comb3 = plot_grid(g_dml_split_no_cross, g_dml)
 
-ggsave(filename = paste0("nocrossfit_doubleml_n", n_obs, "_p", n_vars, ".pdf"), 
+ggsave(filename = paste0("simresults/examples_fail/nocrossfit_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
         plot = g_comb3, width=8, height=3, dpi=150)
