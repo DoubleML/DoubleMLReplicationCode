@@ -3,7 +3,7 @@ name: Replication
 
 on:
   schedule:
-    - cron: "0 9 * * 1,3,5"
+    - cron: "0 9 1 * *"
   workflow_dispatch:
 
 jobs:
