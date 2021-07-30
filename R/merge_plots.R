@@ -7,6 +7,7 @@
 # - sim_iivm.R
 library(ggplot2)
 library(data.table)
+library(DoubleML)
 
 # Create new subdirectory
 dir.create("simresults/merge")
@@ -19,7 +20,7 @@ alpha = 1
 R = 500
 learner_name = "regr.ranger"
 
-res_plr = load("simresults/plr/raw_results_sim_PLR_regr_ranger_n_500_p_20.Rda")
+res_plr = load("simresults/plr/raw_results_sim_PLR_regr.ranger_n_500_p_20.Rda")
 
 coef = vapply(res, function(x) x$coef, double(1L))
 se = vapply(res, function(x) x$se, double(1L))
@@ -54,7 +55,7 @@ alpha = 1
 # Number of repetitions
 R = 500
 
-res_pliv = load("simresults/pliv/raw_results_sim_PLIV_regr_cv_glmnet_n_500_p_20.Rda")
+res_pliv = load("simresults/pliv/raw_results_sim_PLIV_regr.cv_glmnet_n_500_p_20.Rda")
 learner_name = "regr.cv_glmnet"
 
 coef = vapply(res, function(x) x$coef, double(1L))
@@ -89,7 +90,7 @@ learner2_name = "classif.cv_glmnet"
 
 # Number of repetitions
 R = 500
-res_irm = load("simresults/irm/raw_results_sim_IRM_regr_cv_glmnet_n_1000_p_20.Rda")
+res_irm = load("simresults/irm/raw_results_sim_IRM_regr.cv_glmnet_n_1000_p_20.Rda")
 
 coef = vapply(res, function(x) x$coef, double(1L))
 se = vapply(res, function(x) x$se, double(1L))
@@ -123,7 +124,7 @@ theta = alpha = 0.5
 # Number of repetitions
 R = 500
 
-res_iivm = load("simresults/iivm/raw_results_sim_IIVM_regr_cv_glmnet_n_1000_p_20.Rda")
+res_iivm = load("simresults/iivm/raw_results_sim_IIVM_regr.cv_glmnet_n_1000_p_20.Rda")
 
 coef = vapply(res, function(x) x$coef, double(1L))
 se = vapply(res, function(x) x$se, double(1L))
