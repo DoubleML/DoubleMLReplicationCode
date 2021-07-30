@@ -89,18 +89,6 @@ jobs:
           git commit -am "save simulation results"
           git push
 
-      - name: Merge results
-        run: |
-          source("merge_plots.R")
-
-      - name: Commit files (merge)
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add --all
-          git commit -am "save merged results"
-          git push
-
       - name: Session info
         run: |
           options(width = 100)
