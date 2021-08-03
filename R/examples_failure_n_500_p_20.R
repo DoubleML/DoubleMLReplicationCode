@@ -114,7 +114,7 @@ g_nonorth_resc = ggplot(df_nonorth_resc, aes(x = theta_nonorth)) +
             geom_vline(aes(xintercept = 0), col = "black") +
             xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
             stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
-            ggtitle(paste0("Full Sample, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
+            ggtitle(paste0("Non-Orthogonal, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
 
 g_nonorth_resc
 
@@ -218,6 +218,21 @@ ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_n", n_obs, "_p
         plot = g_dml_resc)
 
 
+# with heading "Orthogonal ..."
+g_dml_orth_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
+            geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+            # geom_density(fill = "dark blue", alpha = 0.3, color = "dark blue") +
+            geom_vline(aes(xintercept = 0), col = "black") +
+            xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
+            stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
+            ggtitle(paste0("Orthogonal, n = ", n_obs, ", p = ", n_vars)) + theme(plot.title = element_text(face="bold", hjust = 0.5))
+
+g_dml_orth_resc
+
+ggsave(filename = paste0("simresults/examples_fail/double_ml_orth_resc_n", n_obs, "_p", n_vars, ".pdf"),
+        plot = g_dml_resc)
+
+
 library(cowplot)
 g_comb1  = plot_grid(g_nonorth, g_dml)
 ggsave(filename = paste0("simresults/examples_fail/nonorth_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
@@ -237,16 +252,13 @@ g_comb2_resc  = plot_grid(g_orth_nosplit_resc, g_dml_resc)
 ggsave(filename = paste0("simresults/examples_fail/nosplit_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
         plot = g_comb2_resc, width=8, height=3, dpi=150)
 
-g_comb1_resc = plot_grid(g_nonorth_resc, g_dml_resc)
+g_comb1_resc = plot_grid(g_nonorth_resc, g_dml_orth_resc)
+
 ggsave(filename = paste0("simresults/examples_fail/nonorth_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
         plot = g_comb1_resc, width=8, height=3, dpi=150)
 
-
 ### Cross-Fitting vs. no cross-fitting (both cases with sample splitting) ###
 
-###########
-### DML ###
-###########
 set.seed(3333)
 theta_dml_split_no_cross = rep(0, n_rep)
 
