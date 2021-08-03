@@ -2,7 +2,7 @@ Replication of Simulations in Bach et al. (2020) - DoubleML - An
 Object-Oriented Implementation of Double Machine Learning in R
 ================
 Philipp Bach
-Jul 27, 2021
+Aug 02, 2021
 
 In this repository, we list and automatically run the simulation
 examples presented in [Bach et
@@ -30,10 +30,10 @@ the R files listed in the following:
     available via
     -   `doubleml_codechunks.R`
 
-All data sets and DGPs used in the paper can be via corresponding
-functions as provided in the `DoubleML` package. The required function
-calls are contained in the code chunks of the paper. The API
-documentation is available via
+All data sets and DGPs used in the paper can be replicated via
+corresponding functions as provided in the `DoubleML` package. The
+required function calls are contained in the code chunks of the paper.
+The API documentation is available via
 <https://docs.doubleml.org/r/stable/reference/index.html>.
 
 The current development version of `DoubleML` is available via the
