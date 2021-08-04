@@ -84,7 +84,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: sim-results
-          path: simresults/
+          path: ./simresults/
 
       - name: Session info
         run: |
