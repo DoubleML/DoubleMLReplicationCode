@@ -139,7 +139,8 @@ corr_freq = c(avg_corr_ci, avg_corr_rw, avg_corr_bf, avg_corr_holm)
 
 result_table = rbind(FWER, corr_freq)
 colnames(result_table) = c("CI", "RW", "Bonf", "Holm")
-result_table
+
+print(result_table)
 
 library(xtable)
 xtable(result_table)
