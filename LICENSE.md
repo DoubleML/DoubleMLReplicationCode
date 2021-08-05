@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2021 DoubleMLReplicationCode authors
+Copyright (c) 2021 COPYRIGHT HOLDER: Philipp Bach, Victor Chernozhukov, Malte S. Kurz, Martin Spindler
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
