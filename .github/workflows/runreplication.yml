@@ -86,6 +86,21 @@ jobs:
           name: sim-results
           path: ./simresults/
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: sim-results
+          path: ./simresults/
+
+      - name: Merge results
+        run: |
+          source("R/merge_plots.R")
+        shell: Rscript {0}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: sim-results
+          path: ./simresults/
+
       - name: Session info
         run: |
           options(width = 100)
