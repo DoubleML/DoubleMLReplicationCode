@@ -61,13 +61,10 @@ jobs:
           source("R/sim_siminf.R")
         shell: Rscript {0}
 
-      - name: Commit files
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add --all
-          git commit -am "save simulation results"
-          git push
+      - uses: actions/upload-artifact@v2
+        with:
+          name: sim-siminf-results
+          path: ./simresults/
 
       - name: Session info
         run: |
