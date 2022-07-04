@@ -1,19 +1,3 @@
-## ----setup, include=FALSE---------------------------------------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(eval = FALSE)
-
-def.chunk.hook = knitr::knit_hooks$get("chunk")
-knitr::knit_hooks$set(chunk = function(x, options) {
-  x = def.chunk.hook(x, options)
-  ifelse(options$size != "normalsize", paste0("\n \\", options$size, "\n\n", x, "\n\n \\normalsize"), x)
-})
-
-knitr::opts_chunk$set(size = "small")
-
-knitr::opts_chunk$set(background = "NA")
-
-
-
 ## ---- eval = FALSE----------------------------------------------------------------------------------------
 ## install.packages("DoubleML")
 
