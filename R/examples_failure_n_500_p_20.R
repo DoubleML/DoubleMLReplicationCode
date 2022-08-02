@@ -14,7 +14,7 @@ dir.create("simresults/examples_fail")
 
 
 set.seed(1234)
-n_rep = 100
+n_rep = 1000
 n_obs = 500
 n_vars = 20
 alpha = 0.5
