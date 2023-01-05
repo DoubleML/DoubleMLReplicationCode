@@ -34,7 +34,7 @@ coverage = sum(vapply(res, function(x) x$cover, double(1L)))/R
 print(paste("Coverage:", coverage))
 
 g_plr = ggplot(df_plr, aes(x = coef_resc)) +
-  geom_histogram(aes(y = ..density..), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
   # geom_vline(aes(xintercept = alpha), col = "blue") +
   geom_vline(aes(xintercept = 0), col = "red") +
   geom_vline(aes(xintercept = mean(coef_resc)), col = "dark blue", alpha = 0.3) +
@@ -69,7 +69,7 @@ coverage = sum(vapply(res, function(x) x$cover, double(1L)))/R
 print(paste("Coverage:", coverage))
 
 g_pliv = ggplot(df_pliv, aes(x = coef_resc)) +
-  geom_histogram(aes(y = ..density..), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
   geom_vline(aes(xintercept = 0), col = "red") +
   geom_vline(aes(xintercept = mean(coef_resc)), col = "dark blue", alpha = 0.3) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -104,7 +104,7 @@ coverage = sum(vapply(res, function(x) x$cover, double(1L)))/R
 print(paste("Coverage:", coverage))
 
 g_irm = ggplot(df_irm, aes(x = coef_resc)) +
-  geom_histogram(aes(y = ..density..), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
   geom_vline(aes(xintercept = 0), col = "red") +
   geom_vline(aes(xintercept = mean(coef_resc)), col = "dark blue", alpha = 0.3) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -138,7 +138,7 @@ coverage = sum(vapply(res, function(x) x$cover, double(1L)))/R
 print(paste("Coverage:", coverage))
 
 g_iivm = ggplot(df_iivm, aes(x = coef_resc)) +
-  geom_histogram(aes(y = ..density..), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
+  geom_histogram(aes(y = after_stat(density)), bins = 50, alpha = 0.1, fill = "dark blue", color = "black") +
   geom_vline(aes(xintercept = 0), col = "red") +
   geom_vline(aes(xintercept = mean(coef_resc)), col = "dark blue", alpha = 0.3) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
