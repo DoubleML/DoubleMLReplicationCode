@@ -64,7 +64,7 @@ for (i_rep in seq_len(n_rep)) {
 df_nonorth_resc = data.frame("theta_nonorth" = (theta_nonorth-alpha)/se_nonorth)
 
 g_nonorth_resc = ggplot(df_nonorth_resc, aes(x = theta_nonorth)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -98,7 +98,7 @@ for (i_rep in seq_len(n_rep)){
 df_orth_nosplit_resc = data.frame("theta_orth_nosplit" = (theta_orth_nosplit-alpha)/se_orth_nosplit)
 
 g_orth_nosplit_resc = ggplot(df_orth_nosplit_resc, aes(x = theta_orth_nosplit)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -132,7 +132,7 @@ df_dml = data.frame("theta_dml" = theta_dml - alpha)
 sd_dml = sd(theta_dml)
 
 g_dml = ggplot(df_dml, aes(x = theta_dml)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -147,7 +147,7 @@ ggsave(filename = paste0("simresults/examples_fail/double_ml_n", n_obs, "_p", n_
 df_dml_resc = data.frame("theta_dml" = (theta_dml - alpha)/se_dml)
 
 g_dml_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -161,7 +161,7 @@ ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_n", n_obs, "_p
 
 # with heading "Orthogonal ..."
 g_dml_orth_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   # geom_density(fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-10, 10)) + xlab("") + ylab("") + theme_minimal() +
@@ -207,7 +207,7 @@ df_dml_split_no_cross = data.frame("theta_dml_split_no_cross" = theta_dml_split_
 sd_dml_split_no_cross = sd(theta_dml_split_no_cross)
 
 g_dml_split_no_cross = ggplot(df_dml_split_no_cross, aes(x = theta_dml_split_no_cross)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml_split_no_cross), geom = "area", col = "red", fill = "red", alpha = 0.01) +
@@ -220,7 +220,7 @@ ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_no_cross_n", n
 
 
 g_dml = ggplot(df_dml, aes(x = theta_dml)) +
-  geom_histogram(aes(y=..density..), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
+  geom_histogram(aes(y=after_stat(density)), bins = 100, fill = "dark blue", alpha = 0.3, color = "dark blue") +
   geom_vline(aes(xintercept = 0), col = "black") +
   xlim(c(-0.5, 0.5)) + xlab("") + ylab("") + theme_minimal() + ylim(c(0,9)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd_dml), geom = "area", col = "red", fill = "red", alpha = 0.01) +
