@@ -41,7 +41,7 @@ DGP_desc5 = function(n, p, betamax = 4, decay = 0.99, threshold = 0, noisevar = 
   return(list(data = data.frame(y,x), beta = beta, covar = covar))
 }
 
-R = 500
+R = 250
 
 # correlation for Sigma
 # setting: "medium"
