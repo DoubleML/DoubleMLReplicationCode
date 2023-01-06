@@ -41,7 +41,7 @@ DGP_desc5 = function(n, p, betamax = 4, decay = 0.99, threshold = 0, noisevar = 
   return(list(data = data.frame(y,x), beta = beta, covar = covar))
 }
 
-R = 250
+R = 500
 
 # correlation for Sigma
 # setting: "medium"
@@ -54,6 +54,7 @@ p = 42
 
 # Parallelized loop
 ncores <- detectCores() - 1
+print(ncores)
 cl <- makeCluster(ncores)
 registerDoParallel(cl)
 
