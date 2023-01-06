@@ -54,6 +54,7 @@ p = 42
 
 # Parallelized loop
 ncores <- detectCores() - 1
+print(ncores)
 cl <- makeCluster(ncores)
 registerDoParallel(cl)
 
