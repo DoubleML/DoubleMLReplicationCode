@@ -30,7 +30,8 @@ the R files listed in the following:
     available via
     - `doubleml_codechunks.R`
     - *Note*: The code in `doubleml_codechunks.R` has been automatically
-      produced from the manuscript (`.Rmd`) using
+      produced from the manuscript (`.Rmd`) using `knitr::purl()`, see
+      also Chapter 3.4 of *Xi et al. (2020)*
 
 All data sets and DGPs used in the paper can be replicated via
 corresponding functions as provided in the `DoubleML` package. The
@@ -82,3 +83,6 @@ replication of the simulation results.
 Bach, P., Chernozhukov, V., Kurz, M. S., Spindler, M. and Klaassen, S.
 (2021), DoubleML - An Object-Oriented Implementation of Double Machine
 Learning in R, arXiv:2104.03220.
+
+Xie, Y., Dervieux, C., & Riederer, E. (2020). R markdown cookbook. CRC
+Press.
