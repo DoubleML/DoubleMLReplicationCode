@@ -58,27 +58,27 @@ jobs:
 
       - name: Introduction and Cross Fit
         run: |
-          source("R/examples_failure_n_500_p_20.R")
+          source("Code/examples_failure_n_500_p_20.R")
         shell: Rscript {0}
 
       - name: Run PLR
         run: |
-          source("R/sim_plr.R")
+          source("Code/sim_plr.R")
         shell: Rscript {0}
 
       - name: Run PLIV
         run: |
-          source("R/sim_plivX.R")
+          source("Code/sim_plivX.R")
         shell: Rscript {0}
 
       - name: Run IRM
         run: |
-          source("R/sim_irm.R")
+          source("Code/sim_irm.R")
         shell: Rscript {0}
 
       - name: Run IIVM
         run: |
-          source("R/sim_iivm.R")
+          source("Code/sim_iivm.R")
         shell: Rscript {0}
 
       - uses: actions/upload-artifact@v3
@@ -93,7 +93,7 @@ jobs:
 
       - name: Merge results
         run: |
-          source("R/merge_plots.R")
+          source("Code/merge_plots.R")
         shell: Rscript {0}
 
       - uses: actions/upload-artifact@v3

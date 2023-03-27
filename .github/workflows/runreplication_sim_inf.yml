@@ -58,7 +58,7 @@ jobs:
 
       - name: Run SimInf
         run: |
-          source("R/sim_siminf.R")
+          source("Code/sim_siminf.R")
         shell: Rscript {0}
 
       - uses: actions/upload-artifact@v3

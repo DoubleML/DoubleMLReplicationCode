@@ -58,7 +58,7 @@ jobs:
 
       - name: Run codechunks in vignette
         run: |
-          source("R/doubleml_codechunks.R")
+          source("Code/doubleml_codechunks.R")
         shell: Rscript {0}
 
       - name: Session info
