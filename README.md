@@ -1,12 +1,12 @@
-Replication of Simulations in Bach et al. (2020) - DoubleML - An
+Replication of Simulations in Bach et al. (forthcoming) - DoubleML - An
 Object-Oriented Implementation of Double Machine Learning in R
 ================
 Philipp Bach
-Aug 02, 2021
+Mrz 27, 2023
 
 In this repository, we list and automatically run the simulation
 examples presented in [Bach et
-al. (2020)](https://arxiv.org/abs/2103.09603)
+al. (forthcoming)](https://arxiv.org/abs/2103.09603)
 
 ## Files for Replication of Figures and Results in DoubleML Package Vignette
 
@@ -16,19 +16,21 @@ the R files listed in the following:
 
 1.  Section 4: *Basic idea and key ingredients of double machine
     learning* - Code for replication of simulation examples
-    -   `examples_failure_n_500_p_20.R`
+    - `examples_failure_n_500_p_20.R`
 2.  Section 7.8: *A short simulation study* - Code for replication of
     simulation results
-    -   Cross-fitting: `examples_failure_n_500_p_20.R`
-    -   PLR: `sim_plr.R`
-    -   PLIV: `sim_plivX.R`
-    -   IRM: `sim_irm.R`
-    -   IIVM: `sim_IIVM.R`
-    -   Merging plots: `merge_plots.R`
-    -   Simultaneous inference: `sim_siminf.R`
+    - Cross-fitting: `examples_failure_n_500_p_20.R`
+    - PLR: `sim_plr.R`
+    - PLIV: `sim_plivX.R`
+    - IRM: `sim_irm.R`
+    - IIVM: `sim_IIVM.R`
+    - Merging plots: `merge_plots.R`
+    - Simultaneous inference: `sim_siminf.R`
 3.  Code chunks: The reproducible code contained in the code chunks is
     available via
-    -   `doubleml_codechunks.R`
+    - `doubleml_codechunks.R`
+    - *Note*: The code in `doubleml_codechunks.R` has been automatically
+      produced from the manuscript (`.Rmd`) using
 
 All data sets and DGPs used in the paper can be replicated via
 corresponding functions as provided in the `DoubleML` package. The
@@ -48,13 +50,13 @@ In case you have any questions, do not hesitate to contact
 
 If you use the DoubleML package a citation is highly appreciated:
 
-Bach, P., Chernozhukov, V., Kurz, M. S., and Spindler, M. (2021),
-DoubleML - An Object-Oriented Implementation of Double Machine Learning
-in Python, arXiv:2104.03220.
+Bach, P., Chernozhukov, V., Kurz, M. S., Spindler, M., and Klaassen, S.
+(2021), DoubleML - An Object-Oriented Implementation of Double Machine
+Learning in R, arXiv:2103.09603.
 
     @misc{DoubleML2021R,
       title={{DoubleML} -- {A}n Object-Oriented Implementation of Double Machine Learning in {R}},
-      author={P. Bach and V. Chernozhukov and M. S. Kurz and M. Spindler},
+      author={P. Bach and V. Chernozhukov and M. S. Kurz and M. Spindler and S. Klaassen},
       year={2021},
       eprint={2103.09603},
       archivePrefix={arXiv},
@@ -77,6 +79,6 @@ replication of the simulation results.
 
 ## References
 
-Bach, P., Chernozhukov, V., Kurz, M. S., and Spindler, M. (2021),
-DoubleML - An Object-Oriented Implementation of Double Machine Learning
-in Python, arXiv:2104.03220.
+Bach, P., Chernozhukov, V., Kurz, M. S., Spindler, M. and Klaassen, S.
+(2021), DoubleML - An Object-Oriented Implementation of Double Machine
+Learning in R, arXiv:2104.03220.
