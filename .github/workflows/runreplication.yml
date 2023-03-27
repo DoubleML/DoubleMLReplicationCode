@@ -84,12 +84,16 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: sim-results
-          path: ./simresults/
+          path: |
+            ./simresults/
+            ./Figures/
 
       - uses: actions/download-artifact@v3
         with:
           name: sim-results
-          path: ./simresults/
+          path: |
+            ./simresults/
+            ./Figures/
 
       - name: Merge results
         run: |
@@ -99,7 +103,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: sim-results
-          path: ./simresults/
+          path: |
+            ./simresults/
+            ./Figures/
 
       - name: Session info
         run: |

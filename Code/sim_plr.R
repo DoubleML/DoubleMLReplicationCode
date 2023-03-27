@@ -12,6 +12,7 @@ library(doRNG)
 # Create a new directory plus subdirectories
 dir.create("simresults")
 dir.create("simresults/plr")
+dir.create("Figures")
 
 date = Sys.Date()
 learner_name = "regr.ranger"
@@ -95,7 +96,7 @@ g_est = ggplot(df, aes(x = coef_resc)) +
 
 g_est
 
-ggsave(filename = paste0("simresults/plr/densplot_PLR_", n_obs, "_", dim_x, "_",
+ggsave(filename = paste0("Figures/densplot_PLR_", n_obs, "_", dim_x, "_",
                          "_", dml_procedure, "_", n_folds,
                          "_", n_rep_folds, "_", learner_name, "_", R,
                          "_", alpha, ".pdf"),

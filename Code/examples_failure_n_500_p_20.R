@@ -11,7 +11,7 @@ lgr::get_logger("mlr3")$set_threshold("warn")
 # Create a new directory plus subdirectories
 dir.create("simresults")
 dir.create("simresults/examples_fail")
-
+dir.create("Figures")
 
 set.seed(1234)
 n_rep = 1000
@@ -72,7 +72,7 @@ g_nonorth_resc = ggplot(df_nonorth_resc, aes(x = theta_nonorth)) +
 
 g_nonorth_resc
 
-ggsave(filename = paste0("simresults/examples_fail/nonorth_resc_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/nonorth_resc_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_nonorth_resc)
 
 ################
@@ -106,7 +106,7 @@ g_orth_nosplit_resc = ggplot(df_orth_nosplit_resc, aes(x = theta_orth_nosplit)) 
 
 g_orth_nosplit_resc
 
-ggsave(filename = paste0("simresults/examples_fail/orth_nosplit_resc_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/orth_nosplit_resc_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_orth_nosplit_resc)
 
 ###########
@@ -140,7 +140,7 @@ g_dml = ggplot(df_dml, aes(x = theta_dml)) +
 
 g_dml
 
-ggsave(filename = paste0("simresults/examples_fail/double_ml_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/double_ml_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_dml)
 
 
@@ -155,7 +155,7 @@ g_dml_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
 
 g_dml_resc
 
-ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/double_ml_resc_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_dml_resc)
 
 
@@ -170,20 +170,20 @@ g_dml_orth_resc = ggplot(df_dml_resc, aes(x = theta_dml)) +
 
 g_dml_orth_resc
 
-ggsave(filename = paste0("simresults/examples_fail/double_ml_orth_resc_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/double_ml_orth_resc_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_dml_resc)
 
 
 # Combined plots
 g_comb1_resc = plot_grid(g_nonorth_resc, g_dml_orth_resc)
 
-ggsave(filename = paste0("simresults/examples_fail/nonorth_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
+ggsave(filename = paste0("Figures/nonorth_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
        plot = g_comb1_resc, width=8, height=3, dpi=150)
 
 
 g_comb2_resc  = plot_grid(g_orth_nosplit_resc, g_dml_resc)
 
-ggsave(filename = paste0("simresults/examples_fail/nosplit_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
+ggsave(filename = paste0("Figures/nosplit_doubleml_n", n_obs, "_p", n_vars, "_resc.pdf"),
        plot = g_comb2_resc, width=8, height=3, dpi=150)
 
 
@@ -215,7 +215,7 @@ g_dml_split_no_cross = ggplot(df_dml_split_no_cross, aes(x = theta_dml_split_no_
 
 g_dml_split_no_cross
 
-ggsave(filename = paste0("simresults/examples_fail/double_ml_resc_no_cross_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/double_ml_resc_no_cross_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_dml_split_no_cross)
 
 
@@ -230,5 +230,5 @@ g_dml
 
 g_comb3 = plot_grid(g_dml_split_no_cross, g_dml)
 
-ggsave(filename = paste0("simresults/examples_fail/nocrossfit_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
+ggsave(filename = paste0("Figures/nocrossfit_doubleml_n", n_obs, "_p", n_vars, ".pdf"),
        plot = g_comb3, width=8, height=3, dpi=150)

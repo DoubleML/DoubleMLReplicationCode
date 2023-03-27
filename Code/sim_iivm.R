@@ -12,6 +12,7 @@ library(doRNG)
 # Create a new directory plus subdirectories
 dir.create("simresults")
 dir.create("simresults/iivm")
+dir.create("Figures")
 
 date = Sys.Date()
 learner_name = "regr.cv_glmnet"
@@ -92,7 +93,7 @@ g_iivm = ggplot(df_iivm, aes(x = coef_resc)) +
 
 g_iivm
 
-ggsave(filename = paste0("simresults/iivm/densplot_IIVM_", n_obs, "_", dim_x, "_",
+ggsave(filename = paste0("Figures/densplot_IIVM_", n_obs, "_", dim_x, "_",
                          "_", dml_procedure, "_", n_folds,
                          "_", n_rep_folds, "_", learner_name, "_", R,
                          "_", alpha, ".pdf"),

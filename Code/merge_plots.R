@@ -10,7 +10,7 @@ library(data.table)
 library(DoubleML)
 
 # Create new subdirectory
-dir.create("simresults/merge")
+dir.create("Figures")
 
 #load raw results and generate plots
 # PLR
@@ -155,5 +155,5 @@ library(cowplot)
 g_grid = plot_grid(g_plr, g_pliv, g_irm, g_iivm, nrow = 2)
 g_grid
 
-ggsave(filename = "simresults/merge/simulations_doubleml_key_models.pdf",
+ggsave(filename = "Figures/simulations_doubleml_key_models.pdf",
        plot = g_grid, width=5, height=5, dpi=150)
