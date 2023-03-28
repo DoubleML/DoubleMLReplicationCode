@@ -1,5 +1,5 @@
 # Workflow based on https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/
-name: Replication
+name: Replication of Simulation Study
 
 on:
   schedule:
@@ -56,11 +56,6 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Introduction and Cross Fit
-        run: |
-          source("Code/examples_failure_n_500_p_20.R")
-        shell: Rscript {0}
-
       - name: Run PLR
         run: |
           source("Code/sim_plr.R")
@@ -84,16 +79,12 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: sim-results
-          path: |
-            ./simresults/
-            ./Figures/
+          path: ./simresults/
 
       - uses: actions/download-artifact@v3
         with:
           name: sim-results
-          path: |
-            ./simresults/
-            ./Figures/
+          path: ./simresults/
 
       - name: Merge results
         run: |
