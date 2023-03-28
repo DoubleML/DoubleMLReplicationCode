@@ -1,5 +1,5 @@
 # Workflow based on https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/
-name: Replication
+name: Replication Key Ingredients
 
 on:
   schedule:
