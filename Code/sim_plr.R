@@ -13,6 +13,8 @@ library(doRNG)
 dir.create("simresults")
 dir.create("simresults/plr")
 
+save_plot = FALSE
+
 if (save_plot) {
   dir.create("Figures")
 }
