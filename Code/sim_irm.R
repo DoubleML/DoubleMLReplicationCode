@@ -12,7 +12,12 @@ library(doRNG)
 # Create a new directory plus subdirectories
 dir.create("simresults")
 dir.create("simresults/irm")
-dir.create("Figures")
+
+save_plot = FALSE
+
+if (save_plot) {
+  dir.create("Figures")
+}
 
 date = Sys.Date()
 learner_name = "regr.cv_glmnet"
@@ -93,12 +98,13 @@ g_est = ggplot(df, aes(x = coef_resc)) +
 
 g_est
 
-ggsave(filename = paste0("Figures/densplot_IRM_", n_obs, "_", dim_x, "_",
-                         "_", dml_procedure, "_", n_folds,
-                         "_", n_rep_folds, "_", learner_name, "_", R,
-                         "_", alpha, ".pdf"),
-       plot = g_est)
-
+if (save_plot) {
+  ggsave(filename = paste0("Figures/densplot_IRM_", n_obs, "_", dim_x, "_",
+                           "_", dml_procedure, "_", n_folds,
+                           "_", n_rep_folds, "_", learner_name, "_", R,
+                           "_", alpha, ".pdf"),
+         plot = g_est)
+}
 results_summary = data.table(
   "learner" = learner_name,
   "n_folds" = n_folds,
