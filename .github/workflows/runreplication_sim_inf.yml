@@ -63,7 +63,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sim-siminf-results
+          name: sim-siminf-results-final
           path: ./simresults/
 
       - name: Session info
