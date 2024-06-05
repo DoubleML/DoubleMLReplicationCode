@@ -244,11 +244,8 @@ doubleml_plr = DoubleMLPLR$new(doubleml_data, ml_l, ml_m)
 
 ## ---- eval = TRUE-----------------------------------------------------------------------------------------
 par_grids = list(
-  "ml_l" = ParamSet$new(list(
-    ParamDbl$new("lambda", lower = 0.05, upper = 0.1))),
-  "ml_m" = ParamSet$new(list(
-    ParamDbl$new("lambda", lower = 0.05, upper = 0.1))))
-
+  "ml_l" = ps(lambda = p_dbl(lower = 0.05, upper = 0.1)),
+  "ml_m" = ps(lambda = p_dbl(lower = 0.05, upper = 0.1)))
 
 ## ---- eval = TRUE-----------------------------------------------------------------------------------------
 # Provide tune settings
